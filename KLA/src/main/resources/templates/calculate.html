@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <title>Calculate</title>
+        <script>
+		
+		function addNumber(n){
+			var old = $("#number").attr("value");
+			$("#number").attr("value", old + "" +n);
+		}
+		function clearnumber(){
+			$("#number").attr("value", '');
+		}
+		function back(){
+			var old = $("#number").attr("value");
+			if(old.length > 0){
+				$("#number").attr("value", old.substring(0, old.length-1));
+			}
+		}
+	</script>
+	<style>
+		body{
+			background-color: #cce6ff;
+		}
+		.numbutton {
+			width: 50px;
+			height: 50px;
+			background-color: #0000cc;
+			color: #FFFFFF;
+			font-size: x-large;
+		}
+		.functionbutton {
+			width: 105px;
+		}
+		.numberinput {
+			font-size: xx-large;
+			width: 350px;
+		}
+	</style>
+    </head>
+    
+    <body>
+    	<div style="text-align:center">
+	        <h1 th:inline="text">Glenn Brink Calculator </h1>
+	        <form action="#" th:action="@{/calculate}" th:object="${expression}" method="post">
+	        	<input type="text" name="number" th:value="${expression.number}" id="number" class="numberinput"/>
+		        <div style="width:225px; margin:0 auto">
+			        <table>
+			        	<tr>
+			        		<td colspan="2"><input type="button" value="Clear" onclick="clearnumber()" class="numbutton functionbutton"/></td>
+			        		<td colspan="2"><input type="button" value="DEL" onclick="back()" class="numbutton functionbutton"/></td>
+			        	</tr>
+			        	<tr>
+			        		<td><input type="button" value="7" onclick="addNumber('7')" class="numbutton"/></td>
+			        		<td><input type="button" value="8" onclick="addNumber('8')" class="numbutton"/></td>
+			        		<td><input type="button" value="9" onclick="addNumber('9')" class="numbutton"/></td>
+			        		<td><input type="button" value="/" onclick="addNumber('/')" class="numbutton"/></td>
+			        	</tr>
+			        	<tr>
+			        		<td><input type="button" value="4" onclick="addNumber('4')" class="numbutton"/></td>
+			        		<td><input type="button" value="5" onclick="addNumber('5')" class="numbutton"/></td>
+			        		<td><input type="button" value="6" onclick="addNumber('6')" class="numbutton"/></td>
+			        		<td><input type="button" value="*" onclick="addNumber('*')" class="numbutton"/></td>
+			        	</tr>
+			        	<tr>
+			        		<td><input type="button" value="1" onclick="addNumber('1')" class="numbutton"/></td>
+			        		<td><input type="button" value="2" onclick="addNumber('2')" class="numbutton"/></td>
+			        		<td><input type="button" value="3" onclick="addNumber('3')" class="numbutton"/></td>
+			        		<td><input type="button" value="-" onclick="addNumber('-')" class="numbutton"/></td>
+			        	</tr>
+			        	<tr>
+			        		<td><input type="button" value="." onclick="addNumber('.')" class="numbutton"/></td>
+			        		<td><input type="button" value="0" onclick="addNumber('0')" class="numbutton"/></td>
+			        		<td><input type="submit" value="=" class="numbutton"/></td>
+			        		<td><input type="button" value="+" onclick="addNumber('+')" class="numbutton"/></td>
+			        	</tr>
+			        </table>
+		   		</div>
+	   		</form>
+        </div>
+    </body>
+</html>
